@@ -33,7 +33,7 @@ function BookDetailView() {
       <p><strong>ISBN:</strong> {libro.isbn}</p>
       <p><strong>Precio:</strong> ${libro.price}</p> 
       <p><strong>Descripción:</strong> {libro.description}</p>
-      {libro.coverImage && ( // Mostramos la imagen si existe
+      {libro.coverImage && ( // Imagen
         <img
           src={libro.coverImage}
           alt={`Portada de ${libro.title}`}

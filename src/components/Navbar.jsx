@@ -30,10 +30,10 @@ function Navbar() {
       <Link to="/catalogo" style={linkStyle}>Catálogo</Link>
       <Link to="/sobre-nosotros" style={linkStyle}>Sobre Nosotros</Link>
 
-      {/* Mostrar enlaces condicionalmente */}
+      
       {isLoggedIn ? (
         <>
-          <Link to="/perfil" style={linkStyle}>Mi Perfil ({user?.name})</Link> {/* Mostrar nombre */}
+          <Link to="/perfil" style={linkStyle}>Mi Perfil ({user?.name})</Link> 
           <button onClick={handleLogout} style={buttonStyle}>Logout</button>
         </>
       ) : (

@@ -4,8 +4,8 @@ import { useAuth } from '../context/AuthContext';
 
 
 function ProtectedRoute({ children }) {
-  const { isLoggedIn } = useAuth(); // Obtenemos el estado de autenticación del contexto
-  const location = useLocation(); // Obtenemos la ubicación actual
+  const { isLoggedIn } = useAuth(); 
+  const location = useLocation(); 
 
   
   if (!isLoggedIn) {
