@@ -1,43 +1,115 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; 
+import { Link, NavLink, useNavigate } from 'react-router-dom'; // Importa NavLink
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
-  const { isLoggedIn, logout, user } = useAuth(); 
+  const { isLoggedIn, logout, user } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate('/'); 
+    navigate('/');
   };
 
-  const linkStyle = { marginRight: '15px', textDecoration: 'none', color: 'blue' };
-  const buttonStyle = { 
+
+  const navStyle = {
+    backgroundColor: '#5a4b9f', 
+    padding: '15px 30px',      
+    borderRadius: '8px 8px 0 0', 
+    marginBottom: '20px',     
+    display: 'flex',            
+    alignItems: 'center',      
+  };
+
+  const linkStyle = {
+    color: 'white',            
+    textDecoration: 'none',    
+    marginRight: '20px',      
+    fontSize: '1.1rem',        
+    fontWeight: '500',          
+  };
+
+ 
+  const activeLinkStyle = {
+    fontWeight: 'bold',         
+    textDecoration: 'underline',
+  };
+
+  const userStyle = {
+    color: '#e0e0e0',           
+    marginRight: '20px',
+    fontSize: '0.9rem',
+  };
+
+  const buttonStyle = {
     background: 'none',
     border: 'none',
-    color: 'blue',
+    color: '#ffc107',          
     cursor: 'pointer',
     padding: 0,
-    marginRight: '15px',
-    fontFamily: 'inherit', 
-    fontSize: 'inherit'   
+    fontSize: '1.1rem',
+    fontWeight: '500',
+    fontFamily: 'inherit',
+    marginLeft: 'auto',         
   };
 
-
   return (
-    <nav style={{ padding: '20px', borderBottom: '1px solid #ccc', marginBottom: '20px' }}>
-      <Link to="/" style={linkStyle}>Inicio</Link>
-      <Link to="/catalogo" style={linkStyle}>Catálogo</Link>
-      <Link to="/sobre-nosotros" style={linkStyle}>Sobre Nosotros</Link>
-
+    <nav style={navStyle}>
       
+      <NavLink
+        to="/"
+        style={({ isActive }) => ({
+          ...linkStyle,
+          ...(isActive ? activeLinkStyle : {}),
+        })}
+      >
+        Inicio
+      </NavLink>
+      <NavLink
+        to="/catalogo"
+        style={({ isActive }) => ({
+          ...linkStyle,
+          ...(isActive ? activeLinkStyle : {}),
+        })}
+      >
+        Catálogo
+      </NavLink>
+      <NavLink
+        to="/sobre-nosotros"
+        style={({ isActive }) => ({
+          ...linkStyle,
+          ...(isActive ? activeLinkStyle : {}),
+        })}
+      >
+        Sobre Nosotros
+      </NavLink>
+
       {isLoggedIn ? (
         <>
-          <Link to="/perfil" style={linkStyle}>Mi Perfil ({user?.name})</Link> 
+          <NavLink
+            to="/perfil"
+            style={({ isActive }) => ({
+              ...linkStyle,
+              ...(isActive ? activeLinkStyle : {}),
+            })}
+          >
+            Mi Perfil
+          </NavLink>
+          
+          {user?.name && <span style={userStyle}>({user.name})</span>}
           <button onClick={handleLogout} style={buttonStyle}>Logout</button>
         </>
       ) : (
-        <Link to="/login" style={linkStyle}>Login</Link>
+        <NavLink
+          to="/login"
+          style={({ isActive }) => ({
+            ...linkStyle,
+            ...(isActive ? activeLinkStyle : {}),
+             marginLeft: 'auto', 
+          })}
+        >
+          Login
+        </NavLink>
       )}
     </nav>
   );

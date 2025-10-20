@@ -18,7 +18,7 @@ function AboutView() {
 
   
   return (
-    <div>
+     <div className="view-container-centered">
       <h2>Sobre Nosotros: {libraryInfo.name}</h2>
       <p>{libraryInfo.description}</p>
       <p><strong>Dirección:</strong> {libraryInfo.address}</p>

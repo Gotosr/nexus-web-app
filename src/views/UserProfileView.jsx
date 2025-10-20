@@ -20,7 +20,7 @@ function UserProfileView() {
 
 
   return (
-    <div>
+    <div className="view-container-centered"> 
       <h2>Perfil de Usuario</h2>
       
       <p>Bienvenido/a, {user.name}!</p>
